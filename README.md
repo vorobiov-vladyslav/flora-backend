@@ -46,6 +46,11 @@ Base URL: `/api`
 | PATCH | `/api/bouquets/:id/favorite` | Set the favorite flag |
 | PATCH | `/api/bouquets/:id/photo` | Upload photo (multipart `photo`), temp → public/photos |
 | POST | `/api/orders` | Submit an order |
+| GET | `/api/feedbacks` | List client feedbacks |
+| GET | `/api/feedbacks/:id` | Get one feedback (404 if missing) |
+| POST | `/api/feedbacks` | Create (Joi-validated) |
+| PUT | `/api/feedbacks/:id` | Update passed fields (400 if empty body) |
+| DELETE | `/api/feedbacks/:id` | Delete |
 | GET | `/api-docs` | Swagger UI |
 
 ## Environment

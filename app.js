@@ -5,6 +5,7 @@ import swaggerJsdoc from "swagger-jsdoc";
 import { swaggerOptions } from "./docs/swaggerDef.js";
 import bouquetsRouter from "./routes/bouquets.routes.js";
 import ordersRouter from "./routes/orders.routes.js";
+import feedbacksRouter from "./routes/feedbacks.routes.js";
 
 const app = express();
 const swaggerSpec = swaggerJsdoc(swaggerOptions);
@@ -17,6 +18,7 @@ app.use(express.static("public"));
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use("/api/bouquets", bouquetsRouter);
 app.use("/api/orders", ordersRouter);
+app.use("/api/feedbacks", feedbacksRouter);
 
 app.use((req, res) => {
   res.status(404).json({ message: "Not found" });

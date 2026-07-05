@@ -1,13 +1,18 @@
 import { readFile } from "node:fs/promises";
-import { Bouquet } from "../models/index.js";
+import { Bouquet, Feedback } from "../models/index.js";
 
-export const seedIfEmpty = async () => {
-  const count = await Bouquet.count();
+const seedModel = async (model, file, label) => {
+  const count = await model.count();
   if (count > 0) {
     return;
   }
-  const raw = await readFile(new URL("./bouquets.seed.json", import.meta.url));
-  const bouquets = JSON.parse(raw);
-  await Bouquet.bulkCreate(bouquets);
-  console.log(`Seeded ${bouquets.length} initial bouquets`);
+  const raw = await readFile(new URL(file, import.meta.url));
+  const records = JSON.parse(raw);
+  await model.bulkCreate(records);
+  console.log(`Seeded ${records.length} ${label}`);
+};
+
+export const seedIfEmpty = async () => {
+  await seedModel(Bouquet, "./bouquets.seed.json", "bouquets");
+  await seedModel(Feedback, "./feedbacks.seed.json", "feedbacks");
 };

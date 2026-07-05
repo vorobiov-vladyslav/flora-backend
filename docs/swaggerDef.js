@@ -16,6 +16,7 @@ export const swaggerOptions = {
     tags: [
       { name: "Bouquets", description: "Bouquet catalogue operations" },
       { name: "Orders", description: "Order submission" },
+      { name: "Feedbacks", description: "Client feedback operations" },
     ],
     components: {
       schemas: {
@@ -96,6 +97,32 @@ export const swaggerOptions = {
             product: { type: "string", example: "Spring Elegance" },
             quantity: { type: "integer", example: 1 },
             agree: { type: "boolean", example: true },
+          },
+        },
+        Feedback: {
+          type: "object",
+          properties: {
+            id: { type: "integer", example: 1 },
+            text: { type: "string", example: "Flora made my anniversary unforgettable!" },
+            author: { type: "string", example: "Emma T." },
+            createdAt: { type: "string", format: "date-time" },
+            updatedAt: { type: "string", format: "date-time" },
+          },
+        },
+        FeedbackCreate: {
+          type: "object",
+          required: ["text", "author"],
+          properties: {
+            text: { type: "string", example: "Flora made my anniversary unforgettable!" },
+            author: { type: "string", example: "Emma T." },
+          },
+        },
+        FeedbackUpdate: {
+          type: "object",
+          minProperties: 1,
+          properties: {
+            text: { type: "string" },
+            author: { type: "string" },
           },
         },
         Error: {
